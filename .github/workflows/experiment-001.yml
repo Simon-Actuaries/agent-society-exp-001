@@ -1,0 +1,31 @@
+name: Experiment 001 CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+      - converted_to_draft
+
+permissions:
+  contents: read
+
+jobs:
+  validate-pilot-repository:
+    name: "Experiment 001: Validate pilot repository"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Validate typo correction
+        shell: bash
+        run: |
+          test -f docs/experiment-001.md
+          grep --fixed-strings --line-regexp --quiet 'The pilot task checks a bounded agent workflow.' docs/experiment-001.md
