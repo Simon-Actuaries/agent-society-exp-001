@@ -1,3 +1,3 @@
 # Experiment 001
 
-Teh pilot task checks a bounded agent workflow.
+The pilot task checks a bounded agent workflow.
